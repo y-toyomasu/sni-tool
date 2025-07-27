@@ -1,0 +1,19 @@
+services:
+  shell-server:
+    image: python:3.11-slim
+    container_name: shell-server
+    ports:
+      - "8443:443"
+    tty: true
+    stdin_open: true
+    working_dir: /app
+    volumes:
+      - ./app:/app
+    command: >
+      bash -c "
+        if [ ! -f cert.pem ] || [ ! -f key.pem ]; then
+          echo '[init] Generating self-signed certificate...';
+          openssl req -x509 -newkey rsa:2048 -nodes -keyout key.pem -out cert.pem -days 365 -subj '/C=JP/ST=Tokyo/L=Minato/O=PoC Inc./CN=localhost';
+        fi &&
+        pip install --no-cache-dir -r requirements.txt &&
+        python3 server.py" 

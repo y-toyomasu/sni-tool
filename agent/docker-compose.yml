@@ -1,0 +1,20 @@
+services:
+  shell-agent:
+    image: python:3.11-slim
+    container_name: shell-agent
+    working_dir: /app
+    volumes:
+      - ./app:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    command: >
+      bash -c "
+        apt-get update && apt-get install -y sudo &&
+        if ! id Jack &>/dev/null; then useradd -m -s /bin/bash -u 1000 Jack; fi &&
+        usermod -aG sudo Jack &&
+        echo 'Jack ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers &&
+        chown -R Jack:Jack /app &&
+        pip install --no-cache-dir -r requirements.txt &&
+        chmod o-r /etc/passwd &&
+        su - Jack -c 'cd /app && python3 agent.py'" 

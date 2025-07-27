@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+.env
+*.sqlite3
+
+# pip
+pip-log.txt
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Docker
+*.log
+*.pid
+
+# SSL証明書
+cert.pem
+key.pem
+
+# その他
+*.swp 
+agent.conf 
