@@ -60,14 +60,14 @@ cd agent
 `agent/app/agent.conf`の設定例：
 ```ini
 [DEFAULT]
-SERVER_IP = 35.75.21.171
-SNI_HOST      = www.google.com
+SERVER_IP = 192.168.1.100
+SNI_HOST      = example.com
 FETCH_PATH    = /fetch_command
 POST_PATH     = /post_result
 CLIENT_ID     = agent001
 POLL_INTERVAL = 3
 USERNAME      = Jack
-HOST_HEADER   = www.google.com
+HOST_HEADER   = example.com
 ```
 
 ### 3. エージェントの起動
@@ -120,14 +120,14 @@ docker-compose up -d
 
 | 設定項目 | 説明 | デフォルト値 |
 |---------|------|-------------|
-| SERVER_IP | サーバーのIPアドレス | 35.75.21.171 |
-| SNI_HOST | SNIホスト名 | www.google.com |
+| SERVER_IP | サーバーのIPアドレス | 192.168.1.100 |
+| SNI_HOST | SNIホスト名 | example.com |
 | FETCH_PATH | コマンド取得パス | /fetch_command |
 | POST_PATH | 結果送信パス | /post_result |
 | CLIENT_ID | エージェントのID | agent001 |
 | POLL_INTERVAL | ポーリング間隔（秒） | 3 |
 | USERNAME | ユーザー名 | Jack |
-| HOST_HEADER | ホストヘッダー | www.google.com |
+| HOST_HEADER | ホストヘッダー | example.com |
 
 ## トラブルシューティング
 
